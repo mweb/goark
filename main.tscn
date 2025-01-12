@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3yfp1s3xbruf"]
+[gd_scene load_steps=6 format=3 uid="uid://d3yfp1s3xbruf"]
 
 [ext_resource type="PackedScene" uid="uid://de16bfrgkxx88" path="res://actors/paddle/paddle.tscn" id="1_5wli7"]
 [ext_resource type="Texture2D" uid="uid://lj3vxvi05anu" path="res://images/background.png" id="1_td26x"]
 [ext_resource type="PackedScene" uid="uid://do5535qq0oa22" path="res://actors/wall/walls.tscn" id="3_7pk8w"]
+[ext_resource type="PackedScene" uid="uid://dsbl4msrl7srw" path="res://actors/ball/ball.tscn" id="4_cfqq4"]
 
 [sub_resource type="Environment" id="Environment_bfww4"]
 glow_enabled = true
@@ -26,3 +27,6 @@ position = Vector2(957, 956)
 environment = SubResource("Environment_bfww4")
 
 [node name="Walls" parent="." instance=ExtResource("3_7pk8w")]
+
+[node name="Ball" parent="." instance=ExtResource("4_cfqq4")]
+position = Vector2(535, 599)
