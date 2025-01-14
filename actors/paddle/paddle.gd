@@ -23,4 +23,6 @@ func _physics_process(delta: float) -> void:
 	if move_motion == Vector2.ZERO and use_mouse:
 		move_motion = Vector2(mouse_position_x - global_position.x, 0)
 
+	self.rotation = deg_to_rad(clamp(move_motion.x/4., -15.0, 15.0))
+
 	move_and_collide(move_motion)
