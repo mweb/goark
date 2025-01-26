@@ -11,3 +11,5 @@ func _physics_process(delta: float) -> void:
 	var col = move_and_collide(delta*direction*MOVEMENT_SPEED)
 	if col:
 		direction = direction.bounce(col.get_normal())
+		if col.get_collider().name == "Brick":
+			col.get_collider().get_parent().hit()
