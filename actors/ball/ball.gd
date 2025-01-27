@@ -13,3 +13,9 @@ func _physics_process(delta: float) -> void:
 		direction = direction.bounce(col.get_normal())
 		if col.get_collider().name == "Brick":
 			col.get_collider().get_parent().hit()
+
+	if position.y > 1000:
+		die()
+
+func die():
+	queue_free()
