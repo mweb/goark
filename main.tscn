@@ -67,6 +67,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_tsgq8")
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="UI/Status"]
 layout_mode = 1
@@ -87,5 +88,7 @@ theme = SubResource("Theme_7bt77")
 text = "RESTART"
 
 [node name="Bricks" type="Node2D" parent="."]
+
+[node name="Balls" type="Node2D" parent="."]
 
 [connection signal="pressed" from="UI/Status/Button" to="." method="_on_restart_button_pressed"]

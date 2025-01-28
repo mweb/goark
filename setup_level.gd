@@ -6,26 +6,37 @@ extends Node2D
 @onready var hud = $UI/HUD
 @onready var status = $UI/Status
 @onready var bricks = $Bricks
+@onready var balls = $Balls
 
 var score = 0
 var lives = 3
-var balls = 5
-var balls_in_game = 0
+var freeballs = 5
+var time_limit = 180.0
 
 func _ready() -> void:
-	create_bricks()
-	update_hud()
+	init_game()
 
+func _physics_process(delta: float) -> void:
+	if balls.get_child_count() > 0:
+		time_limit -= delta
+
+	if lives >= 0 && time_limit < 0:
+		lives = -1
+		freeballs = 0
+		var children = balls.get_children()
+		for c in children:
+			balls.remove_child(c)
+			c.queue_free()
+	update_hud()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed && event.keycode == KEY_SPACE && balls > 0:
+		if event.pressed && event.keycode == KEY_SPACE && freeballs > 0:
 			var newball = ball.instantiate()
 			newball.position = Vector2(600, 600)
-			add_child(newball)
+			balls.add_child(newball)
 			newball.connect("died", ball_lost)
-			balls -= 1
-			balls_in_game += 1
+			freeballs -= 1
 			update_hud()
 
 func create_bricks():
@@ -39,13 +50,12 @@ func create_bricks():
 			brick.connect("got_hit", brick_got_hit)
 
 func ball_lost():
-	balls_in_game -= 1
-	if balls_in_game <= 0:
+	if balls.get_child_count() <= 0:
 		lives -= 1
 		if lives >= 0:
-			balls = 5
+			freeballs = 5
 		else:
-			balls = -1
+			freeballs = -1
 	update_hud()
 
 func brick_got_hit(value: int) -> void:
@@ -53,21 +63,42 @@ func brick_got_hit(value: int) -> void:
 	update_hud()
 
 func update_hud():
+	if bricks.get_child_count() == 0:
+		stop_game()
+
 	hud.set_score(score)
 	hud.set_lives(lives)
-	hud.set_balls(balls)
+	hud.set_balls(freeballs)
+	hud.set_time_remaining(time_limit)
+
 	if lives >= 0:
 		status.hide()
 	else:
 		status.show()
+		if bricks.get_child_count() == 0:
+			status.text = "WON"
+		else:
+			status.text = "GAMEOVER"
 
 func _on_restart_button_pressed() -> void:
 	var children = bricks.get_children()
 	for c in children:
 		bricks.remove_child(c)
 		c.queue_free()
+	init_game()
+
+func stop_game() -> void:
+	lives = -1
+	freeballs = 0
+	var children = balls.get_children()
+	for c in children:
+		balls.remove_child(c)
+		c.queue_free()
+
+func init_game() -> void:
 	lives = 3
 	score = 0
-	balls = 5
-	update_hud()
+	freeballs = 5
+	time_limit = 180
 	create_bricks()
+	update_hud()

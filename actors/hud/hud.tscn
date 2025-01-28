@@ -64,3 +64,18 @@ offset_bottom = 356.0
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
+
+[node name="TimeTitle" type="Label" parent="."]
+offset_top = 390.0
+offset_right = 232.0
+offset_bottom = 438.0
+text = "TIME REMAINING:"
+label_settings = SubResource("LabelSettings_hvafb")
+
+[node name="Time" type="Label" parent="."]
+offset_top = 439.0
+offset_right = 300.0
+offset_bottom = 487.0
+text = "0"
+label_settings = SubResource("LabelSettings_g66op")
+horizontal_alignment = 2
