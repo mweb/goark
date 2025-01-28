@@ -12,9 +12,7 @@ var balls_in_game = 0
 
 func _ready() -> void:
 	create_bricks()
-	hud.set_score(score)
-	hud.set_lives(lives)
-	hud.set_balls(balls)
+	update_hud()
 
 
 func _input(event: InputEvent) -> void:
@@ -23,9 +21,10 @@ func _input(event: InputEvent) -> void:
 			var newball = ball.instantiate()
 			newball.position = Vector2(600, 600)
 			add_child(newball)
+			newball.connect("died", ball_lost)
 			balls -= 1
 			balls_in_game += 1
-			hud.set_balls(balls)
+			update_hud()
 
 func create_bricks():
 	for i in range(5):
@@ -34,3 +33,19 @@ func create_bricks():
 			# width = 1452px
 			brick.position = Vector2((95+36)+(128+10)*j, (55+20)+(48+10)*i)
 			add_child(brick)
+
+func ball_lost():
+	balls_in_game -= 1
+	if balls_in_game <= 0:
+		lives -= 1
+		if lives >= 0:
+			balls = 5
+		else:
+			balls = -1
+
+	update_hud()
+
+func update_hud():
+	hud.set_score(score)
+	hud.set_lives(lives)
+	hud.set_balls(balls)

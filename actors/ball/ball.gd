@@ -5,6 +5,7 @@ var lastCollision = -1
 
 const MOVEMENT_SPEED: int = 375
 
+signal died
 
 func _ready():
 	direction = Vector2(1, 1)
@@ -26,3 +27,4 @@ func _physics_process(delta: float) -> void:
 
 func die():
 	queue_free()
+	emit_signal("died")

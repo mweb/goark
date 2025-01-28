@@ -14,10 +14,10 @@ func set_lives(value: int) -> void:
 	if value >= 0:
 		lives.text = str(value)
 	else:
-		lives.text = "GAME OVER"
+		lives.text = "-"
 
 func set_balls(value: int) -> void:
 	if value >= 0:
 		balls.text = str(value)
 	else:
-		balls.text = ""
+		balls.text = "-"
