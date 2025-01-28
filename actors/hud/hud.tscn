@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba8eay27x2d3h"]
+
+[ext_resource type="Script" path="res://actors/hud/hud.gd" id="1_stt31"]
+[ext_resource type="FontFile" uid="uid://buxj1nkh6rgq1" path="res://fonts/Roboto-Medium.ttf" id="2_igell"]
+[ext_resource type="FontFile" uid="uid://q8htr16k7akm" path="res://fonts/Roboto-Regular.ttf" id="3_dr21l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1go35"]
+font = ExtResource("2_igell")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_g66op"]
+font = ExtResource("3_dr21l")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_hvafb"]
+font = ExtResource("2_igell")
+font_size = 40
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_stt31")
+
+[node name="ScoreTitle" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_1go35")
+
+[node name="Score" type="Label" parent="."]
+offset_top = 48.0
+offset_right = 300.0
+offset_bottom = 96.0
+text = "1111111111"
+label_settings = SubResource("LabelSettings_g66op")
+horizontal_alignment = 2
+
+[node name="LivesTitle" type="Label" parent="."]
+offset_top = 130.0
+offset_right = 116.0
+offset_bottom = 178.0
+text = "LIVES:"
+label_settings = SubResource("LabelSettings_hvafb")
+
+[node name="Lives" type="Label" parent="."]
+offset_top = 178.0
+offset_right = 300.0
+offset_bottom = 226.0
+text = "1111111111"
+label_settings = SubResource("LabelSettings_g66op")
+horizontal_alignment = 2
+
+[node name="BallsTitle" type="Label" parent="."]
+offset_top = 260.0
+offset_right = 232.0
+offset_bottom = 308.0
+text = "FREE BALLS:"
+label_settings = SubResource("LabelSettings_hvafb")
+
+[node name="Balls" type="Label" parent="."]
+offset_top = 308.0
+offset_right = 300.0
+offset_bottom = 356.0
+text = "0"
+label_settings = SubResource("LabelSettings_g66op")
+horizontal_alignment = 2
