@@ -19,6 +19,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if balls.get_child_count() > 0:
 		time_limit -= delta
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if lives >= 0 && time_limit < 0:
 		lives = -1
@@ -50,7 +53,7 @@ func create_bricks():
 			brick.connect("got_hit", brick_got_hit)
 
 func ball_lost():
-	if balls.get_child_count() <= 0:
+	if balls.get_child_count() <= 1    :
 		lives -= 1
 		if lives >= 0:
 			freeballs = 5
@@ -88,12 +91,13 @@ func _on_restart_button_pressed() -> void:
 	init_game()
 
 func stop_game() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	lives = -1
 	freeballs = 0
 	var children = balls.get_children()
 	for c in children:
 		balls.remove_child(c)
-		c.queue_free()
+		c.queue_free() 
 
 func init_game() -> void:
 	lives = 3
