@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba8eay27x2d3h"]
+[gd_scene load_steps=8 format=3 uid="uid://ba8eay27x2d3h"]
 
 [ext_resource type="Script" path="res://actors/hud/hud.gd" id="1_stt31"]
 [ext_resource type="FontFile" uid="uid://buxj1nkh6rgq1" path="res://fonts/Roboto-Medium.ttf" id="2_igell"]
@@ -16,18 +16,23 @@ font_size = 40
 font = ExtResource("2_igell")
 font_size = 40
 
+[sub_resource type="LabelSettings" id="LabelSettings_1ukqt"]
+font = ExtResource("3_dr21l")
+
 [node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_stt31")
 
 [node name="ScoreTitle" type="Label" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_1go35")
 
 [node name="Score" type="Label" parent="."]
+layout_mode = 0
 offset_top = 48.0
 offset_right = 300.0
 offset_bottom = 96.0
@@ -36,6 +41,7 @@ label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
 [node name="LivesTitle" type="Label" parent="."]
+layout_mode = 0
 offset_top = 130.0
 offset_right = 116.0
 offset_bottom = 178.0
@@ -43,6 +49,7 @@ text = "LIVES:"
 label_settings = SubResource("LabelSettings_hvafb")
 
 [node name="Lives" type="Label" parent="."]
+layout_mode = 0
 offset_top = 178.0
 offset_right = 300.0
 offset_bottom = 226.0
@@ -51,6 +58,7 @@ label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
 [node name="BallsTitle" type="Label" parent="."]
+layout_mode = 0
 offset_top = 260.0
 offset_right = 232.0
 offset_bottom = 308.0
@@ -58,6 +66,7 @@ text = "FREE BALLS:"
 label_settings = SubResource("LabelSettings_hvafb")
 
 [node name="Balls" type="Label" parent="."]
+layout_mode = 0
 offset_top = 308.0
 offset_right = 300.0
 offset_bottom = 356.0
@@ -66,6 +75,7 @@ label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
 [node name="TimeTitle" type="Label" parent="."]
+layout_mode = 0
 offset_top = 390.0
 offset_right = 232.0
 offset_bottom = 438.0
@@ -73,9 +83,25 @@ text = "TIME REMAINING:"
 label_settings = SubResource("LabelSettings_hvafb")
 
 [node name="Time" type="Label" parent="."]
+layout_mode = 0
 offset_top = 439.0
 offset_right = 300.0
 offset_bottom = 487.0
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1040.0
+offset_right = 60.0
+offset_bottom = 1063.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "V 0.1pre"
+label_settings = SubResource("LabelSettings_1ukqt")
