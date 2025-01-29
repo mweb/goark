@@ -34,13 +34,8 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed && event.keycode == KEY_SPACE && freeballs > 0:
-			var newball = ball.instantiate()
-			newball.position = Vector2(600, 600)
-			balls.add_child(newball)
-			newball.connect("died", ball_lost)
-			freeballs -= 1
-			update_hud()
+		if event.pressed && event.keycode == KEY_SPACE:
+			_on_ball_button_pressed()
 
 func create_bricks():
 	for i in range(5):
@@ -106,3 +101,13 @@ func init_game() -> void:
 	time_limit = 180
 	create_bricks()
 	update_hud()
+
+
+func _on_ball_button_pressed() -> void:
+	if freeballs > 0:
+		var newball = ball.instantiate()
+		newball.position = Vector2(600, 600)
+		balls.add_child(newball)
+		newball.connect("died", ball_lost)
+		freeballs -= 1
+		update_hud()
