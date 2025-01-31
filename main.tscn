@@ -91,12 +91,4 @@ text = "RESTART"
 
 [node name="Balls" type="Node2D" parent="."]
 
-[node name="Button" type="Button" parent="."]
-offset_left = 1638.0
-offset_top = 937.0
-offset_right = 1802.0
-offset_bottom = 1000.0
-text = "BALL"
-
 [connection signal="pressed" from="UI/Status/Button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_ball_button_pressed"]

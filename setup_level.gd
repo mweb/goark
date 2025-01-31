@@ -36,6 +36,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed && event.keycode == KEY_SPACE:
 			_on_ball_button_pressed()
+	if event is InputEventScreenTouch:
+		if event.index == 1 && !event.pressed:
+			_on_ball_button_pressed()
 
 func create_bricks():
 	for i in range(5):
