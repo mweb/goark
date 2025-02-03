@@ -1,9 +1,9 @@
 extends Control
 
-@onready var score = $Score
-@onready var lives = $Lives
-@onready var balls = $Balls
-@onready var time = $Time
+@onready var score = $container/Score
+@onready var lives = $container/Lives
+@onready var balls = $container/Balls
+@onready var time = $container/Time
 
 func set_score(value: int) -> void:
 	if value >= 0:

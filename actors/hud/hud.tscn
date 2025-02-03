@@ -21,72 +21,64 @@ font = ExtResource("3_dr21l")
 
 [node name="HUD" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_right = -1504.0
+grow_horizontal = 0
+grow_vertical = 2
 script = ExtResource("1_stt31")
 
-[node name="ScoreTitle" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreTitle" type="Label" parent="container"]
+layout_mode = 2
 text = "SCORE:"
 label_settings = SubResource("LabelSettings_1go35")
 
-[node name="Score" type="Label" parent="."]
-layout_mode = 0
-offset_top = 48.0
-offset_right = 300.0
-offset_bottom = 96.0
+[node name="Score" type="Label" parent="container"]
+layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
-[node name="LivesTitle" type="Label" parent="."]
-layout_mode = 0
-offset_top = 130.0
-offset_right = 116.0
-offset_bottom = 178.0
+[node name="LivesTitle" type="Label" parent="container"]
+layout_mode = 2
 text = "LIVES:"
 label_settings = SubResource("LabelSettings_hvafb")
 
-[node name="Lives" type="Label" parent="."]
-layout_mode = 0
-offset_top = 178.0
-offset_right = 300.0
-offset_bottom = 226.0
+[node name="Lives" type="Label" parent="container"]
+layout_mode = 2
 text = "3"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
-[node name="BallsTitle" type="Label" parent="."]
-layout_mode = 0
-offset_top = 260.0
-offset_right = 232.0
-offset_bottom = 308.0
+[node name="BallsTitle" type="Label" parent="container"]
+layout_mode = 2
 text = "FREE BALLS:"
 label_settings = SubResource("LabelSettings_hvafb")
 
-[node name="Balls" type="Label" parent="."]
-layout_mode = 0
-offset_top = 308.0
-offset_right = 300.0
-offset_bottom = 356.0
+[node name="Balls" type="Label" parent="container"]
+layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
-[node name="TimeTitle" type="Label" parent="."]
-layout_mode = 0
-offset_top = 390.0
-offset_right = 232.0
-offset_bottom = 438.0
+[node name="TimeTitle" type="Label" parent="container"]
+layout_mode = 2
 text = "TIME REMAINING:"
 label_settings = SubResource("LabelSettings_hvafb")
 
-[node name="Time" type="Label" parent="."]
-layout_mode = 0
-offset_top = 439.0
-offset_right = 300.0
-offset_bottom = 487.0
+[node name="Time" type="Label" parent="container"]
+layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
@@ -98,10 +90,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1040.0
-offset_right = 60.0
-offset_bottom = 1063.0
+offset_left = -60.0
+offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "V 0.1pre"
 label_settings = SubResource("LabelSettings_1ukqt")
+horizontal_alignment = 2

@@ -33,13 +33,21 @@ environment = SubResource("Environment_bfww4")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="UI" instance=ExtResource("5_21sy2")]
-offset_left = 1550.0
-offset_top = 20.0
-offset_right = 1550.0
-offset_bottom = 20.0
-
 [node name="Overlays" parent="UI" instance=ExtResource("6_ls5rq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1504.0
+offset_bottom = 1080.0
+
+[node name="HUD" parent="UI" instance=ExtResource("5_21sy2")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1510.0
+offset_right = 1910.0
+offset_bottom = 1080.0
 
 [node name="Bricks" type="Node2D" parent="."]
 
