@@ -56,7 +56,7 @@ func create_bricks():
 			# width = 1452px
 			brick.position = Vector2((95+36)+(128+10)*j, (55+20)+(48+10)*i)
 			bricks.add_child(brick)
-			brick.set_value(10*(10*(5-i)))
+			brick.set_value(2)
 			brick.connect("got_hit", brick_got_hit)
 
 func ball_lost():
@@ -69,7 +69,7 @@ func ball_lost():
 	update_hud()
 
 func brick_got_hit(value: int) -> void:
-	score += value
+	score += value ** (balls.get_child_count()-1)
 	update_hud()
 
 func update_hud():
