@@ -38,8 +38,13 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event is InputEventKey:
-		if event.pressed && event.keycode == KEY_SPACE:
-			_on_ball_button_pressed()
+		if event.pressed:
+			if event.keycode == KEY_SPACE:
+				_on_ball_button_pressed()
+			elif event.keycode == KEY_P || event.keycode == KEY_ESCAPE:
+				uiOverlays.show_pause()
+				get_tree().paused = true
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event is InputEventScreenTouch:
 		if event.index == 1 && !event.pressed:
 			_on_ball_button_pressed()
@@ -117,6 +122,10 @@ func _on_ball_button_pressed() -> void:
 		freeballs -= 1
 		update_hud()
 
-
 func _on_overlay_start() -> void:
 	init_game()
+
+func _on_overlays_resume() -> void:
+	if uiOverlays.is_shown():
+		get_tree().paused = false
+		uiOverlays.hide_all()

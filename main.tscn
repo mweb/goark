@@ -39,6 +39,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 1504.0
 offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="HUD" parent="UI" instance=ExtResource("5_21sy2")]
 anchors_preset = 0
@@ -48,9 +50,12 @@ anchor_bottom = 0.0
 offset_left = 1510.0
 offset_right = 1910.0
 offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Bricks" type="Node2D" parent="."]
 
 [node name="Balls" type="Node2D" parent="."]
 
+[connection signal="resume" from="UI/Overlays" to="." method="_on_overlays_resume"]
 [connection signal="start" from="UI/Overlays" to="." method="_on_overlay_start"]
