@@ -36,7 +36,7 @@ layout_mode = 0
 offset_top = 48.0
 offset_right = 300.0
 offset_bottom = 96.0
-text = "1111111111"
+text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
@@ -53,7 +53,7 @@ layout_mode = 0
 offset_top = 178.0
 offset_right = 300.0
 offset_bottom = 226.0
-text = "1111111111"
+text = "3"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 

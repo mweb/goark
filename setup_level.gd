@@ -4,7 +4,7 @@ extends Node2D
 @onready var ball = preload("res://actors/ball/ball.tscn")
 
 @onready var hud = $UI/HUD
-@onready var status = $UI/Status
+@onready var uiOverlays = $UI/Overlays
 @onready var bricks = $Bricks
 @onready var balls = $Balls
 
@@ -13,10 +13,11 @@ var lives = 3
 var freeballs = 5
 var time_limit = 180.0
 
-func _ready() -> void:
-	init_game()
-
 func _physics_process(delta: float) -> void:
+	if uiOverlays.is_shown():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		return
+
 	if balls.get_child_count() > 0:
 		time_limit -= delta
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -33,6 +34,9 @@ func _physics_process(delta: float) -> void:
 	update_hud()
 
 func _input(event: InputEvent) -> void:
+	if uiOverlays.is_shown():
+		return
+
 	if event is InputEventKey:
 		if event.pressed && event.keycode == KEY_SPACE:
 			_on_ball_button_pressed()
@@ -72,14 +76,11 @@ func update_hud():
 	hud.set_balls(freeballs)
 	hud.set_time_remaining(time_limit)
 
-	if lives >= 0:
-		status.hide()
-	else:
-		status.show()
+	if lives <= 0 && !uiOverlays.is_shown():
 		if bricks.get_child_count() == 0:
-			status.text = "WON"
+			uiOverlays.show_won(score, time_limit)
 		else:
-			status.text = "GAMEOVER"
+			uiOverlays.show_gameover()
 
 func _on_restart_button_pressed() -> void:
 	var children = bricks.get_children()
@@ -102,6 +103,7 @@ func init_game() -> void:
 	score = 0
 	freeballs = 5
 	time_limit = 180
+	uiOverlays.hide_all()
 	create_bricks()
 	update_hud()
 
@@ -114,3 +116,7 @@ func _on_ball_button_pressed() -> void:
 		newball.connect("died", ball_lost)
 		freeballs -= 1
 		update_hud()
+
+
+func _on_overlay_start() -> void:
+	init_game()
