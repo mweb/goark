@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba8eay27x2d3h"]
+[gd_scene load_steps=9 format=3 uid="uid://ba8eay27x2d3h"]
 
 [ext_resource type="Script" path="res://actors/hud/hud.gd" id="1_stt31"]
 [ext_resource type="FontFile" uid="uid://buxj1nkh6rgq1" path="res://fonts/Roboto-Medium.ttf" id="2_igell"]
@@ -15,6 +15,12 @@ font_size = 40
 [sub_resource type="LabelSettings" id="LabelSettings_hvafb"]
 font = ExtResource("2_igell")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_dymeu"]
+font = ExtResource("2_igell")
+font_size = 50
+outline_size = 8
+outline_color = Color(0, 0.533333, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ukqt"]
 font = ExtResource("3_dr21l")
@@ -82,6 +88,26 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
+
+[node name="highscoreContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 644.0
+offset_right = 416.0
+offset_bottom = 982.0
+alignment = 1
+
+[node name="HighscoreTitle" type="Label" parent="highscoreContainer"]
+layout_mode = 2
+text = "HIGHSCORE"
+label_settings = SubResource("LabelSettings_dymeu")
+horizontal_alignment = 1
+
+[node name="Highscore" type="Label" parent="highscoreContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_dymeu")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Version" type="Label" parent="."]
 layout_mode = 1

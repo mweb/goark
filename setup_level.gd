@@ -3,6 +3,9 @@ extends Node2D
 @onready var br = preload("res://actors/brick/brick.tscn")
 @onready var ball = preload("res://actors/ball/ball.tscn")
 
+var score_file = "user://highscore.save"
+var highscore = 0
+
 @onready var hud = $UI/HUD
 @onready var uiOverlays = $UI/Overlays
 @onready var bricks = $Bricks
@@ -12,6 +15,9 @@ var score = 0
 var lives = 3
 var freeballs = 5
 var time_limit = 180.0
+
+func _ready() -> void:
+	load_score()
 
 func _physics_process(delta: float) -> void:
 	if uiOverlays.is_shown():
@@ -83,7 +89,13 @@ func update_hud():
 
 	if lives <= 0 && !uiOverlays.is_shown():
 		if bricks.get_child_count() == 0:
-			uiOverlays.show_won(score, time_limit)
+			var time_score = time_limit*10
+			var new_high = (score+time_score) > highscore
+			if new_high:
+				highscore = score+time_score
+				hud.set_highscore(highscore)
+				save_score()
+			uiOverlays.show_won(score, time_limit, time_score, new_high)
 		else:
 			uiOverlays.show_gameover()
 
@@ -112,7 +124,6 @@ func init_game() -> void:
 	create_bricks()
 	update_hud()
 
-
 func _on_ball_button_pressed() -> void:
 	if freeballs > 0:
 		var newball = ball.instantiate()
@@ -129,3 +140,17 @@ func _on_overlays_resume() -> void:
 	if uiOverlays.is_shown():
 		get_tree().paused = false
 		uiOverlays.hide_all()
+
+func load_score():
+	if FileAccess.file_exists(score_file):
+		var sfile = FileAccess.open(score_file, FileAccess.READ)
+		highscore = sfile.get_var()
+		sfile.close()
+	else:
+		highscore = 0
+	hud.set_highscore(highscore)
+
+func save_score():
+	var sfile = FileAccess.open(score_file, FileAccess.WRITE)
+	sfile.store_var(highscore)
+	sfile.close()
