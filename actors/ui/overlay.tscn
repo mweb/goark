@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmec1o60ewxia"]
+[gd_scene load_steps=5 format=3 uid="uid://cmec1o60ewxia"]
 
 [ext_resource type="Script" path="res://actors/ui/overlay.gd" id="1_ci4yj"]
 [ext_resource type="Theme" uid="uid://dkqub5bgiymo4" path="res://main_ui_theme.tres" id="2_6ejsd"]
@@ -12,12 +12,6 @@ outline_color = Color(0, 0.509804, 1, 1)
 shadow_size = 0
 shadow_color = Color(1, 1, 1, 0.235294)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rr2qm"]
-font = ExtResource("3_lo3q4")
-font_size = 32
-outline_size = 10
-outline_color = Color(0.0898756, 0.553002, 1, 1)
-
 [node name="Overlay" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -30,6 +24,7 @@ grow_vertical = 2
 script = ExtResource("1_ci4yj")
 
 [node name="introduction" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(800, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -146,7 +141,6 @@ theme = ExtResource("2_6ejsd")
 text = "RESTART"
 
 [node name="won" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -186,15 +180,9 @@ vertical_alignment = 1
 layout_mode = 2
 columns = 2
 
-[node name="HighscoreTitle" type="Label" parent="won/CenterContainer/GridContainer"]
-layout_mode = 2
-text = "NEW HIGHSCORE:"
-label_settings = SubResource("LabelSettings_rr2qm")
-
 [node name="ScoreTitle" type="Label" parent="won/CenterContainer/GridContainer"]
-visible = false
 layout_mode = 2
-text = "HIGHSCORE: "
+text = "SCORE: "
 
 [node name="Score" type="Label" parent="won/CenterContainer/GridContainer"]
 layout_mode = 2
@@ -220,7 +208,17 @@ layout_mode = 2
 text = "10"
 horizontal_alignment = 2
 
+[node name="HighscoreTitle" type="RichTextLabel" parent="won/CenterContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("3_lo3q4")
+bbcode_enabled = true
+text = "[rainbow][wave]NEW HIGHSCORE:[/wave][/rainbow]"
+scroll_active = false
+autowrap_mode = 0
+
 [node name="TotalTitle" type="Label" parent="won/CenterContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lo3q4")
 text = "Total: "

@@ -7,7 +7,7 @@ signal resume
 @onready var gameover = $gameover
 @onready var won = $won
 @onready var highscoreTitle = $won/CenterContainer/GridContainer/HighscoreTitle
-@onready var scoreTitle = $won/CenterContainer/GridContainer/ScoreTitle
+@onready var totalTitle = $won/CenterContainer/GridContainer/TotalTitle
 @onready var score = $won/CenterContainer/GridContainer/Score
 @onready var time = $won/CenterContainer/GridContainer/Time
 @onready var timeValue = $won/CenterContainer/GridContainer/TimeValue
@@ -36,10 +36,10 @@ func show_won(score_value: int, seconds_left: int, time_score: int, new_high: bo
 	hide_all()
 	if new_high:
 		highscoreTitle.show()
-		scoreTitle.hide()
+		totalTitle.hide()
 	else:
 		highscoreTitle.hide()
-		scoreTitle.show()
+		totalTitle.show()
 
 	score.text = str(score_value)
 	var minutes = int(seconds_left/60.)
