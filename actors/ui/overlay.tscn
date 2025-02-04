@@ -30,7 +30,6 @@ grow_vertical = 2
 script = ExtResource("1_ci4yj")
 
 [node name="introduction" type="Panel" parent="."]
-visible = false
 custom_minimum_size = Vector2(800, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -39,27 +38,46 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -299.5
+offset_top = -320.0
 offset_right = 400.0
-offset_bottom = 299.5
+offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_6ejsd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="introduction"]
+[node name="RichTextLabelAndroid" type="RichTextLabel" parent="introduction"]
+visible = false
 layout_mode = 2
 offset_left = 12.0
 offset_right = 788.0
-offset_bottom = 597.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="introduction/VBoxContainer"]
-layout_mode = 2
+offset_bottom = 560.0
 theme_override_fonts/bold_font = ExtResource("3_lo3q4")
 bbcode_enabled = true
 text = "[font_size=42][b]Welche to GoArk[/b][/font_size]
 
 [font_size=38][b]Controls[/b][/font_size]:
-[b]Move to Paddle[/b]:  Use your mouse or [b]A[/b] and [b]D[/b] keys.
+[b]Move Paddle[/b]:  Use your finger.
+[b]Launch Balls[/b]: Tap the screen while your finger is on the paddle.
+
+[b][font_size=38]Gameplay[/font_size][/b]:
+For each life, you get up to 5 balls to play. Control the launch of each ball strategically to maximize your score and break through the toughest levels.
+
+Are you ready to take on the challenge? [b]Let's play![/b]
+
+"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="introduction"]
+layout_mode = 2
+offset_left = 12.0
+offset_right = 788.0
+offset_bottom = 522.0
+theme_override_fonts/bold_font = ExtResource("3_lo3q4")
+bbcode_enabled = true
+text = "[font_size=42][b]Welche to GoArk[/b][/font_size]
+
+[font_size=38][b]Controls[/b][/font_size]:
+[b]Move Paddle[/b]:  Use your mouse or [b]A[/b] and [b]D[/b] keys.
 [b]Launch Balls[/b]: Press [b]SPACE[/b] to start each ball.
 
 [b][font_size=38]Gameplay[/font_size][/b]:
@@ -70,10 +88,14 @@ Are you ready to take on the challenge? [b]Let's play![/b]
 "
 fit_content = true
 
-[node name="CenterContainer" type="CenterContainer" parent="introduction/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="introduction"]
 layout_mode = 2
+offset_left = 12.0
+offset_top = 564.0
+offset_right = 788.0
+offset_bottom = 606.0
 
-[node name="Button" type="Button" parent="introduction/VBoxContainer/CenterContainer"]
+[node name="Button" type="Button" parent="introduction/CenterContainer"]
 layout_mode = 2
 text = "START"
 
@@ -124,6 +146,7 @@ theme = ExtResource("2_6ejsd")
 text = "RESTART"
 
 [node name="won" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -268,7 +291,7 @@ size_flags_vertical = 4
 theme = ExtResource("2_6ejsd")
 text = "RESUME"
 
-[connection signal="pressed" from="introduction/VBoxContainer/CenterContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="introduction/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="gameover/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="won/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="pause/CenterContainer/Button" to="." method="_on_resume_pressed"]

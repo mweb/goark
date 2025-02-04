@@ -18,6 +18,7 @@ var time_limit = 180.0
 
 func _ready() -> void:
 	load_score()
+	uiOverlays.show_introduction()
 
 func _physics_process(delta: float) -> void:
 	if uiOverlays.is_shown():

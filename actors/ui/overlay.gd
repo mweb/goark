@@ -13,12 +13,19 @@ signal resume
 @onready var timeValue = $won/CenterContainer/GridContainer/TimeValue
 @onready var total = $won/CenterContainer/GridContainer/Total
 @onready var pause = $pause
+@onready var descriptionNonAndroid = $introduction/RichTextLabel
+@onready var descriptionAdnroid = $introduction/RichTextLabelAndroid
+
 
 func is_shown() -> bool:
 	return introduction.visible || gameover.visible || won.visible || pause.visible
 
 func show_introduction() -> void:
 	hide_all()
+	print(OS.get_name())
+	if OS.get_name() == "Android":
+		descriptionAdnroid.show()
+		descriptionNonAndroid.hide()
 	introduction.show()
 
 func show_gameover() -> void:
@@ -54,10 +61,8 @@ func hide_all() -> void:
 	won.hide()
 	pause.hide()
 
-
 func _on_start_pressed() -> void:
 	start.emit()
-
 
 func _on_resume_pressed() -> void:
 	resume.emit()
