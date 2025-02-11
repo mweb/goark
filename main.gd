@@ -96,8 +96,10 @@ func update_hud():
 				highscore = score+time_score
 				hud.set_highscore(highscore)
 				save_score()
+			Audioplayer.play_sfx(Audioplayer.Sfx.WIN)
 			uiOverlays.show_won(score, time_limit, time_score, new_high)
 		else:
+			Audioplayer.play_sfx(Audioplayer.Sfx.LOST)
 			uiOverlays.show_gameover()
 
 func _on_restart_button_pressed() -> void:
