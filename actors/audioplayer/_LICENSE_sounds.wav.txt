@@ -1,0 +1,14 @@
+LICENSE
+
+All sounds created using ChipTone are FREE to use for any purpose, commercial or otherwise, under the CC0 licence.
+
+List of Audio Files:
+1. BallBlock.wav
+2. BallPaddle.wav
+3. win.wav
+4. record.wav
+5. lost.wav
+
+For more information about the CC0 licence, please visit: https://creativecommons.org/publicdomain/zero/1.0/
+
+See: https://sfbgames.itch.io/chiptone
