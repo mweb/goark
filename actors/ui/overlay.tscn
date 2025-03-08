@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmec1o60ewxia"]
+[gd_scene load_steps=6 format=3 uid="uid://cmec1o60ewxia"]
 
 [ext_resource type="Script" path="res://actors/ui/overlay.gd" id="1_ci4yj"]
 [ext_resource type="Theme" uid="uid://dkqub5bgiymo4" path="res://main_ui_theme.tres" id="2_6ejsd"]
@@ -11,6 +11,10 @@ outline_size = 24
 outline_color = Color(0, 0.509804, 1, 1)
 shadow_size = 0
 shadow_color = Color(1, 1, 1, 0.235294)
+
+[sub_resource type="LabelSettings" id="LabelSettings_00n62"]
+font = ExtResource("3_lo3q4")
+font_size = 42
 
 [node name="Overlay" type="Control"]
 process_mode = 3
@@ -141,6 +145,7 @@ theme = ExtResource("2_6ejsd")
 text = "RESTART"
 
 [node name="won" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -289,7 +294,102 @@ size_flags_vertical = 4
 theme = ExtResource("2_6ejsd")
 text = "RESUME"
 
+[node name="settings" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.0
+offset_top = -172.5
+offset_right = 339.0
+offset_bottom = 172.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6ejsd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="settings/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_00n62")
+
+[node name="HSeparator2" type="HSeparator" parent="settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("2_6ejsd")
+
+[node name="GridContainer" type="GridContainer" parent="settings/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelEnableSoundEffects" type="Label" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Enable Sound Effects"
+
+[node name="CheckBoxSoundEffects" type="CheckBox" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_6ejsd")
+text = "On"
+
+[node name="LabelSoundVolume" type="Label" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sound Effect Volume"
+
+[node name="SliderSoundVolume" type="HSlider" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_6ejsd")
+max_value = 1.0
+step = 0.0
+
+[node name="LabelEnableMusic" type="Label" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Enable Music"
+
+[node name="CheckBoxMusic" type="CheckBox" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_6ejsd")
+text = "On"
+
+[node name="LabelMusicVolume" type="Label" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="SliderMusicVolume" type="HSlider" parent="settings/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_6ejsd")
+
+[node name="HSeparator" type="HSeparator" parent="settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("2_6ejsd")
+
+[node name="CenterContainer" type="CenterContainer" parent="settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="CloseSettingsButton" type="Button" parent="settings/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "CLOSE"
+
 [connection signal="pressed" from="introduction/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="gameover/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="won/CenterContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="pause/CenterContainer/Button" to="." method="_on_resume_pressed"]
+[connection signal="toggled" from="settings/VBoxContainer/GridContainer/CheckBoxSoundEffects" to="." method="_on_check_box_sound_effects_toggled"]
+[connection signal="value_changed" from="settings/VBoxContainer/GridContainer/SliderSoundVolume" to="." method="_on_slider_sound_volume_value_changed"]
+[connection signal="toggled" from="settings/VBoxContainer/GridContainer/CheckBoxMusic" to="." method="_on_check_box_music_toggled"]
+[connection signal="value_changed" from="settings/VBoxContainer/GridContainer/SliderMusicVolume" to="." method="_on_slider_music_volume_value_changed"]
+[connection signal="pressed" from="settings/VBoxContainer/CenterContainer/CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]

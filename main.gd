@@ -142,6 +142,7 @@ func _on_overlay_start() -> void:
 func _on_overlays_resume() -> void:
 	if uiOverlays.is_shown():
 		get_tree().paused = false
+		hud.get_tree().paused = false
 		uiOverlays.hide_all()
 
 func load_score():
@@ -157,3 +158,6 @@ func save_score():
 	var sfile = FileAccess.open(score_file, FileAccess.WRITE)
 	sfile.store_var(highscore)
 	sfile.close()
+
+func _on_hud_settings() -> void:
+	uiOverlays.show_settings()

@@ -1,5 +1,7 @@
 extends Control
 
+signal settings
+
 @onready var score = $container/Score
 @onready var lives = $container/Lives
 @onready var balls = $container/Balls
@@ -35,3 +37,7 @@ func set_time_remaining(value: int) -> void:
 		time.text = str(value)+"s"
 	if value >= 60:
 		time.text = str(int(value/60.))+" min "+ str(value%60)+" s"
+
+
+func _on_settings_button_pressed() -> void:
+	settings.emit()
