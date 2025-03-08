@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmec1o60ewxia"]
 
-[ext_resource type="Script" path="res://actors/ui/overlay.gd" id="1_ci4yj"]
+[ext_resource type="Script" uid="uid://bpolf1yiyspjf" path="res://actors/ui/overlay.gd" id="1_ci4yj"]
 [ext_resource type="Theme" uid="uid://dkqub5bgiymo4" path="res://main_ui_theme.tres" id="2_6ejsd"]
 [ext_resource type="FontFile" uid="uid://buxj1nkh6rgq1" path="res://fonts/Roboto-Medium.ttf" id="3_lo3q4"]
 
