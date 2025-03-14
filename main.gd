@@ -67,7 +67,8 @@ func create_bricks():
 			brick.connect("got_hit", brick_got_hit)
 
 func ball_lost():
-	if balls.get_child_count() <= 1    :
+	if balls.get_child_count() <= 1:
+		Audioplayer.play_music(Audioplayer.Song.NONE)
 		game_over = true
 		freeballs = -1
 	update_hud()
@@ -106,6 +107,7 @@ func _on_restart_button_pressed() -> void:
 	init_game()
 
 func stop_game() -> void:
+	Audioplayer.play_music(Audioplayer.Song.NONE)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	game_over = true
 	freeballs = 0
@@ -121,6 +123,7 @@ func init_game() -> void:
 	time_limit = 180
 	uiOverlays.hide_all()
 	create_bricks()
+	Audioplayer.play_music(Audioplayer.Song.GAME_BACKGROUND)
 	update_hud()
 
 func _on_ball_button_pressed() -> void:

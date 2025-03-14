@@ -5,11 +5,19 @@ var wall = preload("res://actors/audioplayer/BallWall.wav")
 var block = preload("res://actors/audioplayer/BallBlock.wav")
 var win = preload("res://actors/audioplayer/win.wav")
 var lost = preload("res://actors/audioplayer/lost.wav")
+var backgroundMusic = preload("res://actors/audioplayer/background_music.ogg")
 
 var sfxChannel = AudioServer.get_bus_index("SFX");
 var musicChannel = AudioServer.get_bus_index("Music");
+var soundPlayer = AudioStreamPlayer.new()
 
 enum Sfx { HIT_PADDLE, HIT_WALL, HIT_BLOCK, LOST, WIN }
+enum Song { GAME_BACKGROUND, NONE }
+
+func _init() -> void:
+	soundPlayer.set_bus("Music")
+	soundPlayer.name = "Music"
+	add_child(soundPlayer)
 
 func play_sfx(effect: Sfx) -> void:
 	var stream = null
@@ -33,6 +41,15 @@ func play_sfx(effect: Sfx) -> void:
 	asp.play()
 	await asp.finished
 	asp.queue_free()
+	
+func play_music(song: Song) -> void:
+	match song:
+		Song.GAME_BACKGROUND:
+			backgroundMusic.loop = true
+			soundPlayer.stream = backgroundMusic
+			soundPlayer.play()
+		_:
+			soundPlayer.stop()
 
 func set_sfx_volume(volume: float) -> void:
 	AudioServer.set_bus_volume_db(sfxChannel, linear_to_db(volume))

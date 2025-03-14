@@ -294,6 +294,7 @@ theme = ExtResource("2_6ejsd")
 text = "RESUME"
 
 [node name="settings" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -370,6 +371,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("2_6ejsd")
+max_value = 1.0
+step = 0.0
 
 [node name="HSeparator" type="HSeparator" parent="settings/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
