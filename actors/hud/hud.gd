@@ -3,7 +3,6 @@ extends Control
 signal settings
 
 @onready var score = $container/Score
-@onready var lives = $container/Lives
 @onready var balls = $container/Balls
 @onready var time = $container/Time
 @onready var highscore = $highscoreContainer/Highscore
@@ -19,12 +18,6 @@ func set_highscore(value: int) -> void:
 		highscore.text = "-"
 	else:
 		highscore.text = str(value)
-
-func set_lives(value: int) -> void:
-	if value >= 0:
-		lives.text = str(value)
-	else:
-		lives.text = "-"
 
 func set_balls(value: int) -> void:
 	if value >= 0:

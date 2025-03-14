@@ -57,20 +57,9 @@ text = "0"
 label_settings = SubResource("LabelSettings_g66op")
 horizontal_alignment = 2
 
-[node name="LivesTitle" type="Label" parent="container"]
-layout_mode = 2
-text = "LIVES:"
-label_settings = SubResource("LabelSettings_hvafb")
-
-[node name="Lives" type="Label" parent="container"]
-layout_mode = 2
-text = "3"
-label_settings = SubResource("LabelSettings_g66op")
-horizontal_alignment = 2
-
 [node name="BallsTitle" type="Label" parent="container"]
 layout_mode = 2
-text = "FREE BALLS:"
+text = "BALLS:"
 label_settings = SubResource("LabelSettings_hvafb")
 
 [node name="Balls" type="Label" parent="container"]

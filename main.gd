@@ -12,7 +12,7 @@ var highscore = 0
 @onready var balls = $Balls
 
 var score = 0
-var lives = 3
+var game_over = false
 var freeballs = 5
 var time_limit = 180.0
 
@@ -31,8 +31,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if lives >= 0 && time_limit < 0:
-		lives = -1
+	if !game_over && time_limit < 0:
+		game_over = true
 		freeballs = 0
 		var children = balls.get_children()
 		for c in children:
@@ -68,11 +68,8 @@ func create_bricks():
 
 func ball_lost():
 	if balls.get_child_count() <= 1    :
-		lives -= 1
-		if lives >= 0:
-			freeballs = 5
-		else:
-			freeballs = -1
+		game_over = true
+		freeballs = -1
 	update_hud()
 
 func brick_got_hit(value: int) -> void:
@@ -84,11 +81,10 @@ func update_hud():
 		stop_game()
 
 	hud.set_score(score)
-	hud.set_lives(lives)
 	hud.set_balls(freeballs)
 	hud.set_time_remaining(time_limit)
 
-	if lives <= 0 && !uiOverlays.is_shown():
+	if game_over && !uiOverlays.is_shown():
 		if bricks.get_child_count() == 0:
 			var time_score = time_limit*10
 			var new_high = (score+time_score) > highscore
@@ -111,7 +107,7 @@ func _on_restart_button_pressed() -> void:
 
 func stop_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	lives = -1
+	game_over = true
 	freeballs = 0
 	var children = balls.get_children()
 	for c in children:
@@ -119,7 +115,7 @@ func stop_game() -> void:
 		c.queue_free() 
 
 func init_game() -> void:
-	lives = 3
+	game_over = false
 	score = 0
 	freeballs = 5
 	time_limit = 180
