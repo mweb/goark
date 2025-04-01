@@ -31,7 +31,6 @@ func is_shown() -> bool:
 
 func show_introduction() -> void:
 	hide_all()
-	print(OS.get_name())
 	if OS.get_name() == "Android":
 		descriptionAdnroid.show()
 		descriptionNonAndroid.hide()

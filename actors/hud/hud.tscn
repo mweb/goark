@@ -110,7 +110,7 @@ offset_left = -60.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "V 0.1pre"
+text = "V 0.1"
 label_settings = SubResource("LabelSettings_1ukqt")
 horizontal_alignment = 2
 
