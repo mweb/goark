@@ -17,7 +17,7 @@ var freeballs = 5
 var time_limit = 180.0
 
 func _ready() -> void:
-	load_score()
+	load_settings()
 	uiOverlays.show_introduction()
 
 func _physics_process(delta: float) -> void:
@@ -92,7 +92,7 @@ func update_hud():
 			if new_high:
 				highscore = score+time_score
 				hud.set_highscore(highscore)
-				save_score()
+				save_settings()
 			Audioplayer.play_sfx(Audioplayer.Sfx.WIN)
 			uiOverlays.show_won(score, time_limit, time_score, new_high)
 		else:
@@ -143,19 +143,26 @@ func _on_overlays_resume() -> void:
 		get_tree().paused = false
 		hud.get_tree().paused = false
 		uiOverlays.hide_all()
+		save_settings()
 
-func load_score():
+func load_settings():
 	if FileAccess.file_exists(score_file):
 		var sfile = FileAccess.open(score_file, FileAccess.READ)
 		highscore = sfile.get_var()
+		var musicvolume = sfile.get_float()
+		var sfxvolum = sfile.get_float()
+		Audioplayer.set_music_volume(musicvolume)
+		Audioplayer.set_sfx_volume(sfxvolum)
 		sfile.close()
 	else:
 		highscore = 0
 	hud.set_highscore(highscore)
 
-func save_score():
+func save_settings():
 	var sfile = FileAccess.open(score_file, FileAccess.WRITE)
 	sfile.store_var(highscore)
+	sfile.store_float(Audioplayer.get_music_volume())
+	sfile.store_float(Audioplayer.get_sfx_volume())
 	sfile.close()
 
 func _on_hud_settings() -> void:
