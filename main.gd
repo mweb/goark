@@ -159,4 +159,5 @@ func save_score():
 	sfile.close()
 
 func _on_hud_settings() -> void:
+	get_tree().paused = true
 	uiOverlays.show_settings()

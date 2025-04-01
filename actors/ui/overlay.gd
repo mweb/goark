@@ -117,6 +117,9 @@ func _on_slider_music_volume_value_changed(value: float) -> void:
 		musicCheckbox.set_pressed_no_signal(true)
 
 func _on_close_settings_button_pressed() -> void:
+	if show_prev != show_pause:
+		resume.emit()
+
 	show_prev.call()
 	show_prev = hide_all
 
