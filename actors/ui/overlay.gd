@@ -96,7 +96,7 @@ func _on_check_box_sound_effects_toggled(toggled_on: bool) -> void:
 
 func _on_check_box_music_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		Audioplayer.set_music_volume(.8);
+		Audioplayer.set_music_volume(.5);
 	else:
 		Audioplayer.set_music_volume(0.0);
 

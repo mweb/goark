@@ -17,6 +17,7 @@ enum Song { GAME_BACKGROUND, NONE }
 func _init() -> void:
 	soundPlayer.set_bus("Music")
 	soundPlayer.name = "Music"
+	set_music_volume(0.4)
 	add_child(soundPlayer)
 
 func play_sfx(effect: Sfx) -> void:
